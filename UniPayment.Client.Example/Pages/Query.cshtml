@@ -1,0 +1,196 @@
+﻿@page
+@model UniPayment.Client.Example.Pages.QueryModel
+@{
+    ViewData["Title"] = "Query page";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Invoice Quey Form </h2>
+
+    @if (@Model.QueryResponse != null)
+    {
+        @if (@Model.QueryResponse.Code != "OK")
+        {
+            <div class="alert alert-danger" role="alert">
+                Code:@Model.QueryResponse.Code Error: @Model.QueryResponse.Msg
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                Items Count:@Model.QueryResponse.Data.Models.Count
+            </div>
+        }
+    }
+
+    <div class="col-auto" style="margin-bottom:40px">
+    </div>
+    <form class="input-form" method="POST">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">ApiHost</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="App.ApiHost" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    Api Host
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">AppId</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="App.AppId" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    App Id
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">ApiKey</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="App.ApiKey" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    Api Key
+                </span>
+            </div>
+        </div>
+        <div class="col-auto" style="margin-bottom:40px">
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">InvoiceId</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="QueryRequest.InvoiceId" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">OrderId</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="QueryRequest.OrderId" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-4">
+                <select class="custom-select" asp-for="QueryRequest.Status">
+                    <option value=0>None</option>
+                    <option value=1>New</option>
+                    <option value=2>Paid</option>
+                    <option value=3>Confirmed</option>
+                    <option value=4>Complete</option>
+                    <option value=5>Expired</option>
+                    <option value=6>Invalid</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Start</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="QueryRequest.Start" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">End</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="QueryRequest.End" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">IsAsc</label>
+            <div class="col-sm-4">
+                <select class="custom-select" asp-for="QueryRequest.IsAsc">
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-primary" title="Submit" value="Query Invoice"/>
+            </div>
+        </div>
+    </form>
+
+    @if (@Model.QueryResponse != null && @Model.QueryResponse.Code == "OK")
+    {
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">InvoiceId</th>
+                        <th scope="col">OrderId</th>
+                        <th scope="col">PriceAmount</th>
+                        <th scope="col">PriceCurrency</th>
+                        <th scope="col">PayAmount</th>
+                        <th scope="col">PayCurrency</th>
+                        <th scope="col">PaidAmount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">InvoiceUrl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.QueryResponse.Data.Models)
+                    {
+                        <tr>
+                            <th scope="row">@item.InvoiceId</th>
+                            <td>@item.OrderId</td>
+                            <td>@item.PriceAmount</td>
+                            <td>@item.PriceCurrency</td>
+                            <td>@item.PayAmount</td>
+                            <td>@item.PayCurrency</td>
+                            <td>@item.PaidAmount</td>
+                            <td>@item.Status</td>
+                            <td> <a href="@item.InvoiceUrl" target="_blank">CheckOut</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+
+
+    <p>Learn about <a href="https://www.unipayment.io">UniPayment</a>.</p>
+</div>

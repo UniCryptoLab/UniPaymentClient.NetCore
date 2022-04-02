@@ -1,0 +1,231 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Invoice Submit Form </h2>
+
+    @if (@Model.CreateInvoiceResponse != null)
+    {
+        @if (@Model.CreateInvoiceResponse.Code != "OK")
+        {
+            <div class="alert alert-danger" role="alert">
+                Code:@Model.CreateInvoiceResponse.Code Error: @Model.CreateInvoiceResponse.Msg
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                Create Invoice Success, InvoiceID:@Model.CreateInvoiceResponse.Data.InvoiceId
+            </div>
+        }
+    }
+
+
+
+
+    <div class="col-auto" style="margin-bottom:40px">
+    </div>
+
+    <form class="input-form" method="POST">
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">ApiHost</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="App.ApiHost" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    Api Host
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">AppId</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="App.AppId" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    App Id
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label float-right">ApiKey</label>
+
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="App.ApiKey" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    Api Key
+                </span>
+            </div>
+        </div>
+        <div class="col-auto" style="margin-bottom:40px">
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PriceAmount</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.PriceAmount" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PriceCurrency</label>
+            <div class="col-sm-4">
+                <select class="custom-select" asp-for="CreateInvoiceRequest.PriceCurrency">
+                    <option value="USD">USD</option>
+                    <option value="CNY">CNY</option>
+                    <option value="HKD">HKD</option>
+                    <option value="SGD">SGD</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+                    Price Currency
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PayCurrency</label>
+            <div class="col-sm-4">
+                <select class="custom-select" asp-for="CreateInvoiceRequest.PayCurrency">
+                    <option value="USDT">USDT</option>
+                    <option value="USDC">USDC</option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">NotifyURL</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.NotifyURL" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">RedirectURL</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.RedirectURL" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">OrderId</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.OrderId" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.Title" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.Description" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Lang</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.Lang" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">ExtArgs</label>
+            <div class="col-sm-4">
+                <input class="form-control" asp-for="CreateInvoiceRequest.ExtArgs" />
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">ConfirmSpeed</label>
+            <div class="col-sm-4">
+                <select class="custom-select" asp-for="CreateInvoiceRequest.ConfirmSpeed">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-primary" title="Submit" value="Create Invoice"/>
+            </div>
+        </div>
+    </form>
+
+
+    <p>Learn about <a href="https://www.unipayment.io">UniPayment</a>.</p>
+</div>
