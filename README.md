@@ -1,1 +1,1 @@
-# UniPaymentClient.NetCore-
+# UniPaymentClient.NetCore
