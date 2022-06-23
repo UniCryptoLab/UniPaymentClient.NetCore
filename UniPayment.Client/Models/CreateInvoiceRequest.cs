@@ -24,6 +24,12 @@ namespace UniPayment.Client.Models
         public string PayCurrency { get; set; }
 
         /// <summary>
+        /// Crypto Payment Network
+        /// </summary>
+        [JsonProperty("network")]
+        public string Network { get; set; }
+
+        /// <summary>
         /// IPN Callback Url
         /// </summary>
         [JsonProperty("notify_url")]

@@ -115,6 +115,22 @@
                 </span>
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Network</label>
+            <div class="col-sm-4">
+                <select class="custom-select" asp-for="CreateInvoiceRequest.Network">
+                    <option value="NETWORK_BTC">NETWORK_BTC</option>
+                    <option value="NETWORK_ETH">NETWORK_ETH</option>
+                    <option value="NETWORK_BSC">NETWORK_BSC</option>
+                    <option value="NETWORK_TRX">NETWORK_TRX</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <span class="form-text">
+
+                </span>
+            </div>
+        </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">NotifyURL</label>
@@ -222,7 +238,7 @@
 
         <div class="form-group row">
             <div class="col-sm-2">
-                <input type="submit" class="btn btn-primary" title="Submit" value="Create Invoice"/>
+                <input type="submit" class="btn btn-primary" title="Submit" value="Create Invoice" />
             </div>
         </div>
     </form>
