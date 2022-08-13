@@ -25,13 +25,13 @@ namespace UniPayment.Client
 
         internal HttpClient HttpClient { get; set; }
 
-        const string API_ORDER = "/api/v1.0/invoices";
+        const string API_ORDER = "/v1.0/invoices";
 
-        const string API_CURRNECY = "/api/v1.0/currencies";
+        const string API_CURRNECY = "/v1.0/currencies";
 
-        const string API_Rate = "/api/v1.0/rates";
+        const string API_Rate = "/v1.0/rates";
 
-        const string API_IP = "/api/v1.0/ips";
+        const string API_IP = "/v1.0/ips";
 
 
         public Client(string appId, string apiKey,string apiHost)
