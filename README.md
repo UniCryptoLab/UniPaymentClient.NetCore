@@ -1,3 +1,1 @@
-# UniPaymentClient.NetCore
-
-https://unipayment.readme.io/
+UniPayment.Client/README.md

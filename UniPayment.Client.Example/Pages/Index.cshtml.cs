@@ -26,8 +26,6 @@ namespace UniPayment.Client.Example.Pages
         public string AppId { get; set; }
 
         public string ApiKey { get; set; }
-
-        public string ApiHost { get; set; }
     }
 
 
@@ -37,13 +35,13 @@ namespace UniPayment.Client.Example.Pages
 
         private string _appId = string.Empty;
         private string _apiKey = string.Empty;
-        private string _apiHost = string.Empty;
+        private bool _isSandbox = false;
         public IndexModel(ILogger<IndexModel> logger,IConfiguration configuration)
         {
             _logger = logger;
             _appId = configuration.GetValue<string>("AppId");
             _apiKey = configuration.GetValue<string>("ApiKey");
-            _apiHost = configuration.GetValue<string>("ApiHost");
+            _isSandbox = configuration.GetValue<bool>("isSandbox");
         }
 
         /// <summary>
@@ -69,14 +67,12 @@ namespace UniPayment.Client.Example.Pages
         public void OnGet()
         {
             this.App = new AppModel();
-            this.App.ApiHost = this._apiHost;
             this.App.AppId = this._appId;
             this.App.ApiKey = this._apiKey;
 
             this.CreateInvoiceRequest = new InvoiceViewModel();
             this.CreateInvoiceRequest.PriceAmount = 2.00f;
             this.CreateInvoiceRequest.PriceCurrency = "USD";
-            this.CreateInvoiceRequest.PayCurrency = "USDT";
             this.CreateInvoiceRequest.NotifyURL = "https://demo-payment.requestcatcher.com/test";
             this.CreateInvoiceRequest.RedirectURL = "https://www.example.com";
             this.CreateInvoiceRequest.OrderId = "ORDER_123456";
@@ -89,7 +85,7 @@ namespace UniPayment.Client.Example.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var provider = new UniPaymentClientProvider(this.App.AppId, this.App.ApiKey, this.App.ApiHost);
+            var provider = new UniPaymentClientProvider(this.App.AppId, this.App.ApiKey, this._isSandbox);
 
             //Create UniPayment Client
             var client = provider.GetUniPaymentClient();
@@ -103,17 +99,17 @@ namespace UniPayment.Client.Example.Pages
             try
             {
                 //Send request to api
-                this.CreateInvoiceResponse = await client.CreateInvoice(this.CreateInvoiceRequest);
+                this.CreateInvoiceResponse = await client.CreateInvoiceAsync(this.CreateInvoiceRequest);
                 if(this.CreateInvoiceResponse.Code =="OK")
                 {
                     return new RedirectResult(url: this.CreateInvoiceResponse.Data.InvoiceUrl);
                 }
             }
-            catch (HttpRequestException ex)
+            catch (UniPaymentException ex)
             {
                 this.CreateInvoiceResponse = new Response<InvoiceModel>()
                 {
-                    Code = "HttpRequestException",
+                    Code = ex.Code,
                     Msg = ex.Message,
                 };
             }
