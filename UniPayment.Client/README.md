@@ -1,6 +1,6 @@
 # UniPayment .Net Client
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/UniCryptoLab/UniPaymentClient.Python/blob/main/UniPaymentClient/LICENSE.txt)
-[![NuGet version](https://img.shields.io/nuget/v/unipayment.svg?style=flat-square)](https://www.nuget.org/packages/UniPayment.Client/)
+[![NuGet version (BitPay.Light)](https://img.shields.io/nuget/v/unipayment.client.svg?style=flat-square)](https://www.nuget.org/packages/UniPayment.Client/)
 
 A .NET client for the [UniPayment Client API](https://unipayment.readme.io/reference/overview).  
 
