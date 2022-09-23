@@ -26,6 +26,7 @@ namespace UniPayment.Client.Example.Pages
         public string AppId { get; set; }
 
         public string ApiKey { get; set; }
+
     }
 
 
@@ -35,12 +36,14 @@ namespace UniPayment.Client.Example.Pages
 
         private string _appId = string.Empty;
         private string _apiKey = string.Empty;
+        private string _storeId = string.Empty;
         private bool _isSandbox = false;
         public IndexModel(ILogger<IndexModel> logger,IConfiguration configuration)
         {
             _logger = logger;
             _appId = configuration.GetValue<string>("AppId");
             _apiKey = configuration.GetValue<string>("ApiKey");
+            _storeId = configuration.GetValue<string>("StoreId");
             _isSandbox = configuration.GetValue<bool>("isSandbox");
         }
 
@@ -70,7 +73,9 @@ namespace UniPayment.Client.Example.Pages
             this.App.AppId = this._appId;
             this.App.ApiKey = this._apiKey;
 
+            
             this.CreateInvoiceRequest = new InvoiceViewModel();
+            this.CreateInvoiceRequest.StoreId = _storeId;
             this.CreateInvoiceRequest.PriceAmount = 2.00f;
             this.CreateInvoiceRequest.PriceCurrency = "USD";
             this.CreateInvoiceRequest.NotifyURL = "https://demo-payment.requestcatcher.com/test";
