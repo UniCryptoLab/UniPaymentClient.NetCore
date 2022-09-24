@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Builder;
+
 namespace UniPayment.Client.Example
 {
     public class Startup
@@ -27,7 +31,7 @@ namespace UniPayment.Client.Example
             //var uniPaymentClientProvider = new UniPaymentClientProvider(Configuration);
             //services.AddSingleton<IUniPaymentClientProvider>(uniPaymentClientProvider);
 
-
+            services.AddMvc();
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
         }
@@ -38,6 +42,7 @@ namespace UniPayment.Client.Example
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -46,6 +51,7 @@ namespace UniPayment.Client.Example
                 app.UseHsts();
             }
 
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -55,8 +61,12 @@ namespace UniPayment.Client.Example
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
+              
             });
+            
+            
         }
     }
 }

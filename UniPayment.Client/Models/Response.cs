@@ -13,4 +13,11 @@ namespace UniPayment.Client.Models
         [JsonPropertyName("data")]
         public T Data { get; set; }
     }
+
+    public class Response
+    {
+        [JsonPropertyName("code")] public string Code { get; set; }
+
+        [JsonPropertyName("msg")] public string Msg { get; set; }
+    }
 }

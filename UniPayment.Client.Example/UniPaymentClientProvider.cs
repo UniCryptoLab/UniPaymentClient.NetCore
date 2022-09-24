@@ -3,6 +3,7 @@ using System.Runtime;
 using System.Reflection;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Policy;
 using Microsoft.Extensions.Configuration;
 using UniPayment.Client;
 
@@ -10,7 +11,7 @@ namespace UniPayment.Client.Example
 {
     public interface IUniPaymentClientProvider
     {
-        public Client GetUniPaymentClient();
+        public UniPaymentClient GetUniPaymentClient();
     }
 
     internal class UniPaymentClientProvider : IUniPaymentClientProvider
@@ -19,24 +20,24 @@ namespace UniPayment.Client.Example
 
         private string ApiKey { get; }
 
-        private string ApiHost { get; }
+        private bool IsSandbox { get; }
 
         public UniPaymentClientProvider(IConfiguration config)
         {
             this.AppId = config.GetValue<string>("AppId");
             this.ApiKey = config.GetValue<string>("ApiKey");
-            this.ApiHost = config.GetValue<string>("ApiHost");
+            this.IsSandbox = config.GetValue<bool>("IsSandbox");
 
         }
 
-        public UniPaymentClientProvider(string appId,string apiKey,string apiHost)
+        public UniPaymentClientProvider(string appId,string apiKey,bool isSandbox)
         {
             AppId = appId;
             ApiKey = apiKey;
-            ApiHost = apiHost;
+            isSandbox = isSandbox;
         }
 
-        public Client GetUniPaymentClient()
+        public UniPaymentClient GetUniPaymentClient()
         {
             if (string.IsNullOrWhiteSpace(AppId))
             {
@@ -46,11 +47,7 @@ namespace UniPayment.Client.Example
             {
                 throw new Exception("A 'Api Key' configuration value is required in the appsettings file.");
             }
-            if (string.IsNullOrWhiteSpace(ApiHost))
-            {
-                throw new Exception("An 'Api Host' configuration value is required in the appsettings file.");
-            }
-            return new Client(AppId, ApiKey, ApiHost);
+            return new UniPaymentClient(AppId, ApiKey, true);
         }
     }
 

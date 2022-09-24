@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace UniPayment.Client
 {
-    internal class Utils
+    internal class AuthHelper
     {
         static DateTime Epoch = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
 
@@ -48,24 +48,6 @@ namespace UniPayment.Client
 
                 // Setting the values in the Authorization header using custom scheme (Hmac)
                 return $"{appId}:{requestSignatureBase64String}:{nonce}:{requestTimeStamp}";
-            }
-        }
-
-        internal static void ValidateRequiredParameters(string appId, string apiKy, string apiHost)
-        {
-            if (string.IsNullOrWhiteSpace(appId))
-            {
-                throw new UniPaymentException($"App Id must be a non-empty string");
-            }
-
-            if (string.IsNullOrWhiteSpace(apiKy))
-            {
-                throw new UniPaymentException($"Api Key must be a non-empty string");
-            }
-
-            if (string.IsNullOrWhiteSpace(apiHost))
-            {
-                throw new UniPaymentException("Api Host must be a non-empty string");
             }
         }
     }

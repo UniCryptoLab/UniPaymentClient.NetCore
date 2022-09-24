@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniPayment.Client", "UniPay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniPayment.Client.Example", "UniPayment.Client.Example\UniPayment.Client.Example.csproj", "{344B9EBA-D8D7-403C-BB92-EAE5DB69556B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unipayment.Test", "Unipayment.Test\Unipayment.Test.csproj", "{6A6E1C1C-2C4F-4AD8-B380-02C7528657BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{344B9EBA-D8D7-403C-BB92-EAE5DB69556B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344B9EBA-D8D7-403C-BB92-EAE5DB69556B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{344B9EBA-D8D7-403C-BB92-EAE5DB69556B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6E1C1C-2C4F-4AD8-B380-02C7528657BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6E1C1C-2C4F-4AD8-B380-02C7528657BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6E1C1C-2C4F-4AD8-B380-02C7528657BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6E1C1C-2C4F-4AD8-B380-02C7528657BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

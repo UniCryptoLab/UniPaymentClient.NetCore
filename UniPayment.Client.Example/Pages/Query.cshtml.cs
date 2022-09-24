@@ -23,13 +23,13 @@ namespace UniPayment.Client.Example.Pages
 
         private string _appId = string.Empty;
         private string _apiKey = string.Empty;
-        private string _apiHost = string.Empty;
+        private bool _isSandbox = false;
         public QueryModel(ILogger<IndexModel> logger, IConfiguration configuration)
         {
             _logger = logger;
             _appId = configuration.GetValue<string>("AppId");
             _apiKey = configuration.GetValue<string>("ApiKey");
-            _apiHost = configuration.GetValue<string>("ApiHost");
+            _isSandbox = configuration.GetValue<bool>("isSandbox");
         }
 
         [BindProperty]
@@ -48,7 +48,6 @@ namespace UniPayment.Client.Example.Pages
         {
 
             this.App = new AppModel();
-            this.App.ApiHost = this._apiHost;
             this.App.AppId = this._appId;
             this.App.ApiKey = this._apiKey;
 
@@ -62,7 +61,7 @@ namespace UniPayment.Client.Example.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var provider = new UniPaymentClientProvider(this.App.AppId, this.App.ApiKey, this.App.ApiHost);
+            var provider = new UniPaymentClientProvider(this.App.AppId, this.App.ApiKey, this._isSandbox);
 
             //Create UniPayment Client
             var client = provider.GetUniPaymentClient();
@@ -70,13 +69,13 @@ namespace UniPayment.Client.Example.Pages
             try
             {
                 //Send request to api
-                this.QueryResponse = await client.QueryInvoice(this.QueryRequest);
+                this.QueryResponse = await client.QueryInvoiceAsync(this.QueryRequest);
             }
-            catch (HttpRequestException ex)
+            catch (UniPaymentException ex)
             {
                 this.QueryResponse = new Response<QueryResult<InvoiceModel>>
                 {
-                    Code = "HttpRequestException",
+                    Code = ex.Code,
                     Msg = ex.Message,
                 };
             }
