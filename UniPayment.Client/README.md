@@ -9,7 +9,7 @@ This SDK provides a convenient abstraction of UniPayment's Gateway API and allow
 
 ## Getting Started
 
-Before using the UniPayment API, sign up for your [API key](https://console.unipayment.io/).
+Before using the UniPayment API, sign up for your [API Key](https://console.unipayment.io/).
 
 If you want to use the Sandbox, sign up [here](https://sandbox-console.unipayment.io/).
 
