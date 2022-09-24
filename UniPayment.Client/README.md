@@ -30,7 +30,7 @@ nuget install UniPayment.Client
 ```c#
 using UniPayment.Client;
 
-client = UniPaymentClient(AppId, ApiKey);
+client = UniPaymentClient("open client id", "open client secret");
 ```
 
 Sandbox is used in the same way with is_sandbox as true.
@@ -38,7 +38,7 @@ Sandbox is used in the same way with is_sandbox as true.
 ```c#
 using UniPayment.Client;
 
-client = UniPaymentClient(AppId, ApiKey);
+client = UniPaymentClient("open client id", "open client secret", true);
 ```
 
 ## Create an invoice
@@ -48,10 +48,10 @@ client = UniPaymentClient(AppId, ApiKey);
 using UniPayment.Client;
 using UniPayment.Client.Models;
 
-app_id='your app id'
-api_key='your api key'
+client = UniPaymentClient("open client id", "open client secret");
 
 var request = new CreateInvoiceRequest();
+request.AppId = "payment app Id";
 request.PriceAmount = 2.00f;
 request.PriceCurrency = "USD";
 request.NotifyURL = "https://demo-payment.requestcatcher.com/test";
@@ -63,7 +63,7 @@ request.Lang = "en-US";
 request.ExtArgs = "Merchant Pass Through Data";
 request.ConfirmSpeed = "Medium";
 
-var response = _client.CreateInvoice(request);
+var response = client.CreateInvoice(request);
 ```
 ### CreateInvoiceResponse
 
