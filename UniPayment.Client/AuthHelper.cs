@@ -38,10 +38,10 @@ namespace UniPayment.Client
         {
             var signatureRawData = $"{appId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
 
-            var apiKeyBytes = Encoding.UTF8.GetBytes(clientSecret);
+            var secretBytes = Encoding.UTF8.GetBytes(clientSecret);
             var signature = Encoding.UTF8.GetBytes(signatureRawData);
 
-            using (var hmac = new HMACSHA256(apiKeyBytes))
+            using (var hmac = new HMACSHA256(secretBytes))
             {
                 var signatureBytes = hmac.ComputeHash(signature);
                 var requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
