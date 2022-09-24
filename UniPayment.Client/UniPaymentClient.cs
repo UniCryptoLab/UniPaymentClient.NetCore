@@ -15,15 +15,15 @@ namespace UniPayment.Client
     
     public class UniPaymentClient
     {
-        string AppId { get; set; }
-        string ApiKey { get; set; }
+        string ClientId { get; set; }
+        string ClientSecret { get; set; }
         string ApiHost { get; set; }
         HttpClient _httpClient { get; set; }
         
-        public UniPaymentClient(string appId, string apiKey, bool isSandbox=false)
+        public UniPaymentClient(string clientId, string clientSecret, bool isSandbox=false)
         {
-            this.AppId = appId;
-            this.ApiKey = apiKey;
+            this.ClientId = clientId;
+            this.ClientSecret = clientSecret;
             if (isSandbox)
             {
                 this.ApiHost = "https://sandbox-api.unipayment.io";
@@ -68,6 +68,9 @@ namespace UniPayment.Client
             StringBuilder paramBuilder = new StringBuilder();
             if(!string.IsNullOrEmpty(query.InvoiceId))
                 paramBuilder.AppendFormat("invoice_id={0}&", query.InvoiceId);
+            
+            if(!string.IsNullOrEmpty(query.AppId))
+                paramBuilder.AppendFormat("app_id={0}&", query.AppId);
 
             if(!string.IsNullOrEmpty(query.OrderId))
                 paramBuilder.AppendFormat("order_id={0}&", query.OrderId);
@@ -330,7 +333,7 @@ namespace UniPayment.Client
             }
 
             //Get HMAC signature value
-            var hmac = AuthHelper.Sign(this.AppId, this.ApiKey, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+            var hmac = AuthHelper.Sign(this.ClientId, this.ClientSecret, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
 
             //Append Header to request
             request.Headers.Authorization = new AuthenticationHeaderValue("Hmac", hmac);

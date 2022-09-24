@@ -6,10 +6,10 @@ namespace UniPayment.Client.Models
     public class CreateInvoiceRequest
     {
         /// <summary>
-        /// Store Id
+        /// App Id
         /// </summary>
-        [JsonProperty("store_id")]
-        public string StoreId { get; set; }
+        [JsonProperty("app_id")]
+        public string AppId { get; set; }
         
         /// <summary>
         /// Invoice Fiat Amount

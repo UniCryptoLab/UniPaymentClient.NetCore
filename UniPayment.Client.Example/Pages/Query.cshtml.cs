@@ -39,7 +39,7 @@ namespace UniPayment.Client.Example.Pages
         /// App
         /// </summary>
         [BindProperty]
-        public AppModel App { get; set; }
+        public ClientModel Client { get; set; }
 
 
         public Response<QueryResult<InvoiceModel>> QueryResponse { get; set; }
@@ -47,9 +47,9 @@ namespace UniPayment.Client.Example.Pages
         public void OnGet()
         {
 
-            this.App = new AppModel();
-            this.App.AppId = this._appId;
-            this.App.ApiKey = this._apiKey;
+            this.Client = new ClientModel();
+            this.Client.ClientId = this._appId;
+            this.Client.ClientSecret = this._apiKey;
 
 
             this.QueryRequest = new QueryInvoiceViewModel();
@@ -61,7 +61,7 @@ namespace UniPayment.Client.Example.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var provider = new UniPaymentClientProvider(this.App.AppId, this.App.ApiKey, this._isSandbox);
+            var provider = new UniPaymentClientProvider(this.Client.ClientId, this.Client.ClientSecret, this._isSandbox);
 
             //Create UniPayment Client
             var client = provider.GetUniPaymentClient();

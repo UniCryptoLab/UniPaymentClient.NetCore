@@ -21,11 +21,11 @@ namespace UniPayment.Client.Example.Pages
     }
 
     [BindProperties]
-    public class AppModel
+    public class ClientModel
     {
-        public string AppId { get; set; }
+        public string ClientId { get; set; }
 
-        public string ApiKey { get; set; }
+        public string ClientSecret { get; set; }
 
     }
 
@@ -34,16 +34,16 @@ namespace UniPayment.Client.Example.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        private string _clientId = string.Empty;
+        private string _clientSecret = string.Empty;
         private string _appId = string.Empty;
-        private string _apiKey = string.Empty;
-        private string _storeId = string.Empty;
         private bool _isSandbox = false;
         public IndexModel(ILogger<IndexModel> logger,IConfiguration configuration)
         {
             _logger = logger;
+            _clientId = configuration.GetValue<string>("ClientId");
+            _clientSecret = configuration.GetValue<string>("ClientSecret");
             _appId = configuration.GetValue<string>("AppId");
-            _apiKey = configuration.GetValue<string>("ApiKey");
-            _storeId = configuration.GetValue<string>("StoreId");
             _isSandbox = configuration.GetValue<bool>("isSandbox");
         }
 
@@ -58,7 +58,7 @@ namespace UniPayment.Client.Example.Pages
         /// App
         /// </summary>
         [BindProperty]
-        public AppModel App { get; set; }
+        public ClientModel Client { get; set; }
 
 
 
@@ -69,13 +69,13 @@ namespace UniPayment.Client.Example.Pages
 
         public void OnGet()
         {
-            this.App = new AppModel();
-            this.App.AppId = this._appId;
-            this.App.ApiKey = this._apiKey;
+            this.Client = new ClientModel();
+            this.Client.ClientId = this._clientId;
+            this.Client.ClientSecret = this._clientSecret;
 
             
             this.CreateInvoiceRequest = new InvoiceViewModel();
-            this.CreateInvoiceRequest.StoreId = _storeId;
+            this.CreateInvoiceRequest.AppId = _appId;
             this.CreateInvoiceRequest.PriceAmount = 2.00f;
             this.CreateInvoiceRequest.PriceCurrency = "USD";
             this.CreateInvoiceRequest.NotifyURL = "https://demo-payment.requestcatcher.com/test";
@@ -90,7 +90,7 @@ namespace UniPayment.Client.Example.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var provider = new UniPaymentClientProvider(this.App.AppId, this.App.ApiKey, this._isSandbox);
+            var provider = new UniPaymentClientProvider(this.Client.ClientId, this.Client.ClientSecret, this._isSandbox);
 
             //Create UniPayment Client
             var client = provider.GetUniPaymentClient();

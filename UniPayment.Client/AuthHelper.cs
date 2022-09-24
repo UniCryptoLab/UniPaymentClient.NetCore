@@ -29,16 +29,16 @@ namespace UniPayment.Client
             return Convert.ToBase64String(requestContentHash);
         }
 
-        internal static string GetRawData(string appId,string requestHttpMethod,string requestUri,ulong requestTimeStamp, string nonce,string requestContentBase64String)
+        internal static string GetRawData(string clientId,string requestHttpMethod,string requestUri,ulong requestTimeStamp, string nonce,string requestContentBase64String)
         {
-            return $"{appId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
+            return $"{clientId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
         }
 
-        internal static string Sign(string appId, string apiKey, string requestHttpMethod, string requestUri, ulong requestTimeStamp, string nonce, string requestContentBase64String)
+        internal static string Sign(string appId, string clientSecret, string requestHttpMethod, string requestUri, ulong requestTimeStamp, string nonce, string requestContentBase64String)
         {
             var signatureRawData = $"{appId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
 
-            var apiKeyBytes = Encoding.UTF8.GetBytes(apiKey);
+            var apiKeyBytes = Encoding.UTF8.GetBytes(clientSecret);
             var signature = Encoding.UTF8.GetBytes(signatureRawData);
 
             using (var hmac = new HMACSHA256(apiKeyBytes))

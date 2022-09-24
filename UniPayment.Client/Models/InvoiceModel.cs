@@ -8,8 +8,8 @@ namespace UniPayment.Client.Models
         /// <summary>
         /// App Id
         /// </summary>
-        [JsonProperty("store_id")]
-        public string StoreId { get; set; }
+        [JsonProperty("app_id")]
+        public string AppId { get; set; }
 
         /// <summary>
         /// InvoiceId

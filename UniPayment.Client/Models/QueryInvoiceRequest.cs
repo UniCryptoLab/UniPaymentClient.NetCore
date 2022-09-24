@@ -7,6 +7,7 @@ namespace UniPayment.Client.Models
     {
         public string InvoiceId { get; set; }
 
+        public string AppId { get; set; }
         public string OrderId { get; set; }
 
         public EnumInvoiceStatus? Status { get; set; }
