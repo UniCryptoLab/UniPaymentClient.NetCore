@@ -10,13 +10,13 @@ public class UnitTest1
     private UniPaymentClient _client;
     private ITestOutputHelper _testOutputHelper;
     
-    private string _clientId = "06c6f5e9-8993-49d7-8457-ae894e670391";
-    private string _clientSecret = "96YW8gmjzYkLP613NstqKt6GmZgC5cmLg";
-    private string _appId = "d186fa61-729e-46d3-b52c-8f3f355f032a";
+    private string _clientId = "74feb539-ba5a-4ae9-b901-4da4fb539574";
+    private string _clientSecret = "BsoRhgqzhR1TYMtwTRYdPxBTvR5rxkW9K";
+    private string _appId = "2a9bd90b-fe95-4659-83cb-04de662fbbac";
     private bool _isSandbox = true;
-    
-    private string _ipnNotify = "{\"ipn_type\":\"invoice\",\"event\":\"invoice_created\",\"app_id\":\"d186fa61-729e-46d3-b52c-8f3f355f032a\",\"invoice_id\":\"DniLiQreepEYePhcwBZpno\",\"order_id\":\"2\",\"price_amount\":2.0,\"price_currency\":\"AUD\",\"network\":null,\"address\":null,\"pay_currency\":null,\"pay_amount\":0.0,\"exchange_rate\":0.0,\"paid_amount\":0.0,\"confirmed_amount\":0.0,\"refunded_price_amount\":0.0,\"create_time\":\"2022-09-24T09:56:26.0729376Z\",\"expiration_time\":\"2022-09-25T09:56:26.0729864Z\",\"status\":\"New\",\"error_status\":\"None\",\"ext_args\":null,\"transactions\":null,\"notify_id\":\"65aa67ab-abcb-4d94-a929-ac3552ad2296\",\"notify_time\":\"0001-01-01T00:00:00\"}";
-    private string _invoiceID = "DajcJHbCVGTpKqd6oBdGKQ";
+
+    private string _ipnNotify = "{\"ipn_type\":\"invoice\",\"event\":\"invoice_created\",\"app_id\":\"2a9bd90b-fe95-4659-83cb-04de662fbbac\",\"invoice_id\":\"SrAARgNrPgvveiBQtNc4gk\",\"order_id\":\"6330f1f118df1\",\"price_amount\":100.0,\"price_currency\":\"USD\",\"network\":null,\"address\":null,\"pay_currency\":\"USDT\",\"pay_amount\":0.0,\"exchange_rate\":0.0,\"paid_amount\":0.0,\"confirmed_amount\":0.0,\"refunded_price_amount\":0.0,\"create_time\":\"2022-09-26T00:27:29.6697063Z\",\"expiration_time\":\"2022-09-26T00:32:29.6698139Z\",\"status\":\"New\",\"error_status\":\"None\",\"ext_args\":null,\"transactions\":null,\"notify_id\":\"0443e623-492a-474a-bd22-b866d6b7beb9\",\"notify_time\":\"0001-01-01T00:00:00\"}";
+    private string _invoiceID = "SrAARgNrPgvveiBQtNc4gk";
     
     
     public UnitTest1(ITestOutputHelper testOutputHelper)
