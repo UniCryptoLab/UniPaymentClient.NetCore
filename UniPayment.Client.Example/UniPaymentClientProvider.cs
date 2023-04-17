@@ -47,7 +47,7 @@ namespace UniPayment.Client.Example
             {
                 throw new Exception("A 'Api Key' configuration value is required in the appsettings file.");
             }
-            return new UniPaymentClient(AppId, ApiKey, true);
+            return new UniPaymentClient(AppId, ApiKey, this.IsSandbox);
         }
     }
 
