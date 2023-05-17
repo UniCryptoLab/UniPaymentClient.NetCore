@@ -27,4 +27,11 @@ namespace UniPayment.Client.Models
         PaidOver = 3,
         Marked = 4,
     }
+
+    public enum EnumPayoutStatus
+    {
+        Pending = 1,
+        Processing = 6,
+        Complete = 7
+    }
 }

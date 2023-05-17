@@ -10,9 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Builder;
-
 namespace UniPayment.Client.Example
 {
     public class Startup

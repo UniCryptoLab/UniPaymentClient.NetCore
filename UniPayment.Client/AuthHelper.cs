@@ -34,9 +34,9 @@ namespace UniPayment.Client
             return $"{clientId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
         }
 
-        internal static string Sign(string appId, string clientSecret, string requestHttpMethod, string requestUri, ulong requestTimeStamp, string nonce, string requestContentBase64String)
+        internal static string Sign(string clientId, string clientSecret, string requestHttpMethod, string requestUri, ulong requestTimeStamp, string nonce, string requestContentBase64String)
         {
-            var signatureRawData = $"{appId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
+            var signatureRawData = $"{clientId}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}{requestContentBase64String}";
 
             var secretBytes = Encoding.UTF8.GetBytes(clientSecret);
             var signature = Encoding.UTF8.GetBytes(signatureRawData);
@@ -47,7 +47,7 @@ namespace UniPayment.Client
                 var requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
 
                 // Setting the values in the Authorization header using custom scheme (Hmac)
-                return $"{appId}:{requestSignatureBase64String}:{nonce}:{requestTimeStamp}";
+                return $"{clientId}:{requestSignatureBase64String}:{nonce}:{requestTimeStamp}";
             }
         }
     }
