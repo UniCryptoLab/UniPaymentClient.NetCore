@@ -34,4 +34,15 @@ namespace UniPayment.Client.Models
         Processing = 6,
         Complete = 7
     }
+
+    public enum EnumWithdrawStatus
+    {
+        Pending = 1,
+        Cancel = 2,
+        Confirm = 3,
+        Reject = 4,
+        Approve = 5,
+        Success = 6,
+        Fail = 7,
+    }
 }
