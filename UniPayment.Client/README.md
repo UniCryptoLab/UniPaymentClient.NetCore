@@ -9,11 +9,11 @@ This SDK provides a convenient abstraction of UniPayment's Gateway API and allow
 
 ## Getting Started
 
-[SDK Tutorial](https://unipayment.io/en/docs/sdk/tutorial/)
+[Integrate Tutorial](https://help.unipayment.io/en/articles/7851188-integrate-with-payment-gateway)
 
-Before using the UniPayment API, sign up for your [API Key](https://console.unipayment.io/).
+Before using the UniPayment API, sign up for your [API key](https://console.unipayment.io/).
 
-If you want to use the Sandbox, sign up [here](https://sandbox-console.unipayment.io/).
+You can also use our test tokens for testing and integration. [Documentation](https://help.unipayment.io/en/articles/8263248-how-to-use-testcoin).
 
 ## Installation
 
@@ -33,14 +33,6 @@ nuget install UniPayment.Client
 using UniPayment.Client;
 
 client = UniPaymentClient("open client id", "open client secret");
-```
-
-Sandbox is used in the same way with is_sandbox as true.
-
-```c#
-using UniPayment.Client;
-
-client = UniPaymentClient("open client id", "open client secret", true);
 ```
 
 ## Create an invoice
