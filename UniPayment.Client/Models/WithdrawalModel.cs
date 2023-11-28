@@ -12,50 +12,56 @@ namespace UniPayment.Client.Models
         public string Id { get; set; }
         
         /// <summary>
-        /// 网络类型
+        /// Withdraw Network Type
         /// </summary>
         [JsonProperty("network")]
         public string Network { get; set; }
 
         /// <summary>
-        /// 资产类型
+        /// Asset Type
         /// </summary>
         [JsonProperty("asset_type")]
         public string AssetType { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Amount
         /// </summary>
         [JsonProperty("amount")]
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// 出金地址
+        /// Address
         /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; }
 
         /// <summary>
-        /// 手续费
+        /// Fee
         /// </summary>
         [JsonProperty("fee")]
         public decimal Fee { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Status
         /// </summary>
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         [JsonProperty("status")]
         public EnumWithdrawStatus Status { get; set; }
 
         /// <summary>
-        /// 出金交易Hash
+        /// Withdraw TxnHash
         /// </summary>
         [JsonProperty("txn_hash")]
         public string TxnHash { get; set; }
-        
+
         /// <summary>
-        /// 创建时间
+        ///  Note
+        /// </summary>
+        [JsonProperty("note")]
+        public string Note { get; set; }
+
+        /// <summary>
+        /// Create Time
         /// </summary>
         [JsonProperty("create_time")]
         public DateTime CreateTime { get; set; }
