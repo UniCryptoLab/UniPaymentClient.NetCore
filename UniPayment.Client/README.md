@@ -53,7 +53,7 @@ request.RedirectURL = "https://www.example.com";
 request.OrderId = "ORDER_123456";
 request.Title = "MacBook Pro";
 request.Description = "MacBook Pro(256G)";
-request.Lang = "en-US";
+request.Lang = "en";
 request.ExtArgs = "Merchant Pass Through Data";
 request.ConfirmSpeed = "Medium";
 

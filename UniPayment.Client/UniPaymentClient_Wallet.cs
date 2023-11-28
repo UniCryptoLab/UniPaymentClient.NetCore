@@ -127,5 +127,24 @@ namespace UniPayment.Client
 
             return this.Get<Response<QueryResult<WithdrawalModel>>>("/v1.0/wallet/withdrawals", paramBuilder);
         }
+        
+        public Response<List<WithdrawalFee>> GetWithdrawalFees(string assetType)
+        {
+            return this.GetWithdrawalFeesAsync(assetType).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Get Withdraw Fee
+        /// </summary>
+        /// <param name="invoiceId"></param>
+        /// <returns></returns>
+        public Task<Response<List<WithdrawalFee>>> GetWithdrawalFeesAsync(string assetType)
+        {
+            StringBuilder paramBuilder = new StringBuilder();
+            paramBuilder.Append($"rd={DateTime.UtcNow:yyyyMMddHHmmssffff}");
+
+            var action = $"/v1.0/wallet/withdrawal-fees/{assetType}";
+            return this.Get<Response<List<WithdrawalFee>>>(action, paramBuilder);
+        }
     }
 }

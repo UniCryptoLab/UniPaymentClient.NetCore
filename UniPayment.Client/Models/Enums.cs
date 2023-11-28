@@ -45,4 +45,11 @@ namespace UniPayment.Client.Models
         Success = 6,
         Fail = 7,
     }
+
+    public enum EnumFeeType
+    {
+        Free =1,
+        Ratio=2,
+        Fix =3,
+    }
 }
